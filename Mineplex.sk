@@ -715,7 +715,7 @@ function gwenAlert(p: player , r: text) :: number:
 	loop all players:
 		if loop-player has permission "mineplex.trainee":
 			if {mineplex.pref.gwen.%loop-player%} is true:
-				send "&b&kK&r &c&lGWEN > &6%{_player}% &esuspected of &a%{_r}%&e." to loop-player
+				send "&b&kK&r &c&lGWEN > &6%{_player}% &esuspected of &a%{_r}%&e in &b%{_player}'s world%" to loop-player
 
 #Config Loading
 
@@ -4235,7 +4235,7 @@ command /mcr:
 		send "&9Plugin> &7Mineplex Core"
 		send "&9Plugin> &7Running MCR: &e{@MCRVER}"
 		send "&9Plugin> &7Hotfix/Release Cycle: &e{@MCRHOTFIX}"
-		send "&9Plugin> &7by &aWheezyGold7931&f, &eTorksi&f, &eunyelped&f, and &eOttelino"
+		send "&9Plugin> &7by &aWheezyGold7931&f, &eTorksi&f, &eTheSkripterDK, &eunyelped&f, and &eOttelino"
 		send "&9Plugin> &7Special thanks to LimeGlass, Rezz, Citrin_, Boobah, and HappyLuigi"
 		send ""
 		send "&9Patreon> &7Huge Thanks to my Patreons:"
@@ -5369,6 +5369,8 @@ command /message [<player>] [<text>]:
 			if argument 2 is set:
 				if {mineplex.pref.pm.%arg-1%} is false:
 					send "&d%arg-1% has private messaging disabled."
+					stop
+				if {mineplex.ignore.%arg 1%} is true:
 					stop
 				send "&6&l%{_p}% > %arg-1% &e&l%arg-2%"
 				send "&6&l%{_p}% > %arg-1% &e&l%arg-2%" to arg-1
@@ -6527,6 +6529,15 @@ command /modules:
 #		format slot 22 of player with water bucket named "&a&lUn-Remove Player" with lore "||&e" to close then run [execute console command "say no way hosay"]
 #		format slot 24 of player with tnt named "&a&lKill Private Server" with lore "||&7Shift-Right Click to Kill Private Server" to close then run [execute console command "say xd"]
 
+command /ignore [<player>]:
+	aliases: /block
+	trigger:
+		if arg 1 is not set:
+			send "&9Ignore> /ignore <player>"
+			stop 
+		if arg 1 is set:
+			set {mineplex.ignore.%arg 1%} to true
+			send "&9Ignore>You are now ignore %arg 1%"
 
 #skPerms by LimeGlass
 #Thanks for Letting Me Bake This In!
