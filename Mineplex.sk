@@ -6529,6 +6529,7 @@ command /modules:
 #		format slot 22 of player with water bucket named "&a&lUn-Remove Player" with lore "||&e" to close then run [execute console command "say no way hosay"]
 #		format slot 24 of player with tnt named "&a&lKill Private Server" with lore "||&7Shift-Right Click to Kill Private Server" to close then run [execute console command "say xd"]
 
+
 command /ignore [<player>]:
 	aliases: /block
 	trigger:
